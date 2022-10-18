@@ -71,7 +71,6 @@ app.get("/users/:id", (req, res) => {
 // CREATE: create new user and add to users
 app.post("/users", (req, res) => {
     let newUser = req.body;
-    console.log(newUser);
     const timestamp = Date.now(); // dummy generated user id
     newUser.id = timestamp;
     users.push(newUser);
@@ -83,8 +82,6 @@ app.put("/users/:id", (req, res) => {
     const id = req.params.id;
     const userData = req.body;
     let user = users.find(item => item.id == id);
-    console.log(userData);
-    console.log(user);
     user.name = userData.name;
     user.title = userData.title;
     user.mail = userData.mail;
@@ -95,7 +92,6 @@ app.put("/users/:id", (req, res) => {
 // DELETE: delete user
 app.delete("/users/:id", (req, res) => {
     const id = req.params.id;
-    console.log(id);
     users = users.filter(item => item.id != id);
     return res.json(users);
 });
