@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+const URL_FOR_FRONTEND = "https://behu-kea.github.io/cors-fetch-test/";
 
 let users = [
     {
@@ -50,7 +51,12 @@ let users = [
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
-app.use(cors()); //Enable All CORS Requests
+console.log(process.env.NODE_ENV)
+const cors_url = process.env.NODE_ENV === 'prod' ? URL_FOR_FRONTEND: "*";
+console.log(cors_url)
+app.use(cors({
+    origin: cors_url
+}));
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
