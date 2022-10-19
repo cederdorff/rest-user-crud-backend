@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
-const URL_FOR_FRONTEND = "https://behu-kea.github.io/cors-fetch-test";
+const URL_FOR_FRONTEND = "https://behu-kea.github.io";
 
 let users = [
     {
