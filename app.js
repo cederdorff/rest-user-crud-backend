@@ -56,6 +56,7 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 // otherwise add cors for specific website
 // Remember to add the NODE_ENV="prod" on server!
 const cors_url = process.env.NODE_ENV === 'prod' ? URL_FOR_FRONTEND: "*";
+console.log(cors_url);
 app.use(cors({
     origin: cors_url
 }));
