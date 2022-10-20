@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
+// Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
+const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
 let users = [
     {
@@ -50,7 +52,14 @@ let users = [
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
-app.use(cors()); //Enable All CORS Requests
+
+// If the application is running localhost allow all requests,
+// otherwise add cors for specific website
+// Remember to add the NODE_ENV="prod" on server!
+const cors_url = process.env.NODE_ENV === 'prod' ? URL_FOR_FRONTEND: "*";
+app.use(cors({
+    origin: cors_url
+}));
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
