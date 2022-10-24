@@ -1,7 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+require('dotenv');
+const mysqlConnection = require("./database");
 const port = 3000;
+
 // Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
 const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
@@ -60,6 +63,19 @@ const cors_url = process.env.NODE_ENV === 'prod' ? URL_FOR_FRONTEND: "*";
 app.use(cors({
     origin: cors_url
 }));
+
+app.get('/database-test', (req, res) => {
+    mysqlConnection.query(
+        "SELECT * FROM wishlist.wish;",
+        (err, results, fields) => {
+            if (!err) {
+                res.json(results);
+            } else {
+                console.log(err);
+            }
+        }
+    );
+})
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
