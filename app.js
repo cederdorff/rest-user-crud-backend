@@ -5,7 +5,7 @@ const port = 3000;
 // Your github page origin has to be written EXACTLY like this! https://behu-kea.github.io
 const URL_FOR_FRONTEND = "YOUR_GITHUB_PAGE_ORIGIN_HERE";
 
-const users = require("./data"); // users array imported from data.js
+let users = require("./data"); // users array imported from data.js
 
 app.use(express.json()); //Used to parse JSON bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
