@@ -23,7 +23,7 @@ app.use(
     })
 );
 
-app.get('/database-test', (req, res) => {
+app.get('/database', (req, res) => {
     const query = "SELECT * FROM wishlist.wish;";
     mysqlConnection.query(
         query,
@@ -38,12 +38,12 @@ app.get('/database-test', (req, res) => {
 })
 
 // This is the correct way to handle user input
-app.get('/database-test-user-input', (req, res) => {
-    const query = "SELECT * FROM wishlist.wish where price > ?;";
-    const minimumPrice = 22;
+app.get('/database-user-input', (req, res) => {
+    const query = "SELECT * FROM wishlist.wish where description = ?;";
+    const description = `'; DROP TABLE users;--`;
     mysqlConnection.query(
         query,
-        [minimumPrice],
+        [description],
         (err, results, fields) => {
             if (!err) {
                 res.json(results);
