@@ -58,6 +58,7 @@ app.get('/database-user-input', (req, res) => {
 // IT DELETES THE USERS TABLE IF YOU HAVE A TABLE CALLED USERS IN YOUR DATABASE
 // To run this endpoint with sql injection go to the following page:
 // http://localhost:3000/database-sql-injection/'; DROP TABLE users;--
+// Read more about it here: https://planetscale.com/blog/how-to-prevent-sql-injection-attacks-in-node-js
 app.get('/database-sql-injection/:description', (req, res) => {
     // THIS WILL DO AN SQL INJECTION: VERY BAD!!!!!
     const hackQuery = `SELECT * FROM wishlist.wish where description = '${req.params.description}';`;
