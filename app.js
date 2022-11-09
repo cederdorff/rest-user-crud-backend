@@ -40,7 +40,7 @@ app.get('/database', (req, res) => {
 // This is the correct way to handle user input
 app.get('/database-user-input', (req, res) => {
     const query = "SELECT * FROM wishlist.wish where description = ?;";
-    const description = `'; DROP TABLE users;--`;
+    const description = `asd`;
     mysqlConnection.query(
         query,
         [description],
