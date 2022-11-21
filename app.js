@@ -23,7 +23,7 @@ app.use(
     })
 );
 
-app.get('/database', (req, res) => {
+app.get('/api/wishes', (req, res) => {
     const query = "SELECT * FROM wishlist.wish;";
     mysqlConnection.query(
         query,
@@ -36,6 +36,26 @@ app.get('/database', (req, res) => {
         }
     );
 })
+
+// create user
+app.post('/api/wishes', (req, res) => {
+        const text = req.body.text;
+        const price = req.body.price;
+        const description = req.body.description;
+
+        mysqlConnection.query('INSERT INTO wish(text, price, description) values (?, ?, ?)', [text, price, description],
+            (err, results, fields) => {
+                if (!err) {
+                    res.json('success');
+                } else {
+                    console.log(err);
+                    res.json('error');
+                }
+            }
+        )
+
+    }
+);
 
 // This is the correct way to handle user input
 app.get('/database-user-input', (req, res) => {
